@@ -1,0 +1,7 @@
+.content {
+  max-width: 960px;
+  height: 100%;
+  padding: 0 calc(50% - 480px);
+  font-size: 2rem;
+  position: relative;
+}

@@ -1,0 +1,12 @@
+.messages {
+  height: calc(100% - 3rem);
+  padding: 10px;
+  background: beige;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messages .line {
+  display: inline-block;
+}

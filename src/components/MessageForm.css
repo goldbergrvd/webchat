@@ -1,0 +1,25 @@
+.message-form {
+  width: 100%;
+  max-width: 960px;
+  height: 3rem;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+.message-form input {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  font-size: inherit;
+  background: HoneyDew;
+  outline: none;
+}
+
+.message-form button {
+  width: 20%;
+  border: none;
+  font-size: inherit;
+  background: LightCoral;
+  cursor: pointer;
+}
