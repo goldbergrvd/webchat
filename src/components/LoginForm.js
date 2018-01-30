@@ -17,6 +17,12 @@ export class LoginForm extends Component {
 
     let name = this.refs.input.value.trim()
     if (name) {
+      if (!/^\w+$/.test(name)) {
+        this.refs.input.value = ''
+        this.refs.input.placeholder = '限英文、數字和底線'
+        return
+      }
+
       firebase.auth().signInAnonymously().catch(error => {
         let errorCode = error.code
         let errorMessage = error.message
@@ -26,6 +32,10 @@ export class LoginForm extends Component {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           this.props.setName(name)
+          firebase.database().ref('users/' + name).set({
+            text: '',
+            timestamp: + new Date()
+          })
         }
       });
     }

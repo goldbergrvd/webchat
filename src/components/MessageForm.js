@@ -5,13 +5,11 @@ import './MessageForm.css'
 
 export class MessageForm extends Component {
   static propTypes = {
-    name: PropTypes.string,
-    addMessage: PropTypes.func.isRequired,
-    focus: PropTypes.bool
+    name: PropTypes.string
   }
 
   componentDidUpdate() {
-    if (this.props.focus) {
+    if (this.props.name) {
       this.refs.input.focus();
     }
   }

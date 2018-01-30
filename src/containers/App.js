@@ -15,14 +15,17 @@ class App extends Component {
     actions: PropTypes.objectOf(PropTypes.func).isRequired
   }
 
+  addMessage(data) {
+    this.props.actions.addMessage({
+      author: data.key,
+      ...data.val()
+    })
+  }
+
   componentDidMount() {
-    firebase.database().ref('users')
-      .on('child_changed', data => {
-        this.props.actions.addMessage({
-          author: data.key,
-          ...data.val()
-        })
-      })
+    let usersRef = firebase.database().ref('users')
+    usersRef.on('child_added', this.addMessage.bind(this))
+    usersRef.on('child_changed', this.addMessage.bind(this))
   }
 
   render() {
@@ -30,7 +33,7 @@ class App extends Component {
     return (
       <div className="content">
         <MessageList messages={messages} />
-        <MessageForm name={name} addMessage={actions.addMessage} focus={name ? true : false} />
+        <MessageForm name={name} />
         {!name && <LoginForm setName={actions.setName} />}
       </div>
     )

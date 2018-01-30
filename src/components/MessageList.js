@@ -12,7 +12,11 @@ export class MessageList extends Component {
       <p className="messages">
         {
           this.props.messages.map((message) => (
-            <span className="line" key={message.id}>{`${message.author}: ${message.text}`}</span>
+            <span className="line" key={message.id}>{
+              message.text ?
+              `${message.author}: ${message.text}` :
+              `【${message.author}】加入聊天室！`
+            }</span>
           ))
         }
       </p>
