@@ -18,9 +18,11 @@ class App extends Component {
   componentDidMount() {
     firebase.database().ref('users')
       .on('child_changed', data => {
-        console.log('no~~~~', data)
-        return this.props.actions.addMessage({ text: data.val(), author: data.key })
-      });
+        this.props.actions.addMessage({
+          author: data.key,
+          ...data.val()
+        })
+      })
   }
 
   render() {

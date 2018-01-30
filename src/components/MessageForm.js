@@ -10,7 +10,7 @@ export class MessageForm extends Component {
     focus: PropTypes.bool
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     if (this.props.focus) {
       this.refs.input.focus();
     }
@@ -21,7 +21,10 @@ export class MessageForm extends Component {
 
     let message = this.refs.input.value.trim()
     if (message) {
-      firebase.database().ref('users/' + this.props.name).set(message)
+      firebase.database().ref('users/' + this.props.name).set({
+        text: message,
+        timestamp: + new Date()
+      })
       this.refs.input.value = ""
     }
   }

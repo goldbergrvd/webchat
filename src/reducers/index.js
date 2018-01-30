@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import { ADD_MESSAGE, SET_NAME } from '../actions/types'
 
+var messageId = 0
+
 const messages = (state = [], action) => {
   switch(action.type) {
     case ADD_MESSAGE:
-      return state.concat([action.message])
+      return [{ id: '' + messageId++, ...action.message }].concat(state)
     default:
       return state
   }

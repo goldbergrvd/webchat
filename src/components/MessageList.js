@@ -11,8 +11,8 @@ export class MessageList extends Component {
     return (
       <p className="messages">
         {
-          this.props.messages.reverse().map((message, i) => (
-            <span className="line" key={i}>{`${message.author}: ${message.text}`}</span>
+          this.props.messages.map((message) => (
+            <span className="line" key={message.id}>{`${message.author}: ${message.text}`}</span>
           ))
         }
       </p>
